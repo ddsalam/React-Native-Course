@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import firebase from 'firebase';
+
 import { Header, Button, Spinner } from './components/common';
 import LoginForm from './components/LoginForm';
+import firebaseConfig from './config/firebase.config.json';
 
 export default class App extends Component {
    state = { loggedIn: null }
 
    componentDidMount() {
-      firebase.initializeApp({
-         apiKey: 'AIzaSyAIrnnILsS3BnvKxxTMvOat2O-3GYnfXzo',
-         authDomain: 'authentication-445c1.firebaseapp.com',
-         databaseURL: 'https://authentication-445c1.firebaseio.com',
-         projectId: 'authentication-445c1',
-         storageBucket: 'authentication-445c1.appspot.com',
-         messagingSenderId: '833961102280'
-      });
+      firebase.initializeApp(firebaseConfig);
 
       firebase.auth().onAuthStateChanged(user => {
          if (user) {
